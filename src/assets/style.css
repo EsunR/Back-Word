@@ -1,0 +1,30 @@
+html {
+  height: 100%;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+ "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+body {
+  height: 100%;
+  background-color: #f4f5f5 !important;
+}
+
+hr {
+  margin: 20px 0;
+  opacity: .2;
+}
+
+/* Transtion动画 */
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 1s ease;
+}
