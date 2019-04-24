@@ -1,18 +1,25 @@
 <template>
   <div id="cet" class="e_card">
-    <div class="word">{{wordList[index].word}}</div>
-    <hr>
-    <div class="chinese">
-      <div class="mean" v-for="(item,index) in wordList[index].chinese" :key="index">{{item}}</div>
-    </div>
-    <el-button class="home_btn" circle @click="$router.push('/user')">
-      <i class="mdi mdi-home"></i>
-    </el-button>
-    <div class="btn_box">
-      <el-button icon="el-icon-arrow-left" circle @click="previous"></el-button>
-      <el-button icon="el-icon-arrow-right" circle @click="next"></el-button>
-      <el-button type="danger" round @click="postWordStatus(3)">添加到错词本</el-button>
-      <el-button type="primary" round @click="postWordStatus(1)">通 过</el-button>
+    <div
+      class="warning"
+      v-if="wordList.length == 0"
+    >您已经学会了所有单词，请休息一下吧！</div>
+    
+    <div class="wrapper" v-if="wordList.length != 0">
+      <div class="word">{{wordList[index].word}}</div>
+      <hr>
+      <div class="chinese">
+        <div class="mean" v-for="(item,index) in wordList[index].chinese" :key="index">{{item}}</div>
+      </div>
+      <el-button class="home_btn" circle @click="$router.push('/user')">
+        <i class="mdi mdi-home"></i>
+      </el-button>
+      <div class="btn_box">
+        <el-button icon="el-icon-arrow-left" circle @click="previous"></el-button>
+        <el-button icon="el-icon-arrow-right" circle @click="next"></el-button>
+        <el-button type="danger" round @click="postWordStatus(3)">添加到错词本</el-button>
+        <el-button type="primary" round @click="postWordStatus(1)">通 过</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -23,34 +30,9 @@ export default {
     return {
       wordList: [
         {
-          id: "1",
-          word: "china1",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "2",
-          word: "china2",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "3",
-          word: "china3",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "4",
-          word: "china4",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "5",
-          word: "china5",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "6",
-          word: "china6",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
+          word: "",
+          chinese: "",
+          id: ""
         }
       ],
       index: 0
@@ -94,6 +76,7 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.$message.success("标记成功！");
+            this.index++;
           }
         })
         .catch(err => {
@@ -103,7 +86,7 @@ export default {
     }
   },
   mounted() {
-    // this.getWordList();
+    this.getWordList();
   }
 };
 </script>
@@ -125,7 +108,7 @@ export default {
     right: 20px;
     bottom: 20px;
   }
-  .home_btn{
+  .home_btn {
     position: absolute;
     top: 20px;
     right: 20px;

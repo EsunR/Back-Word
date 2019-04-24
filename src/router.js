@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import check from './components/check.vue'
-// import global from './common.vue'
+import global from './common.vue'
 
 import user from './components/user/user'
 import userHome from './components/user/userHome.vue'

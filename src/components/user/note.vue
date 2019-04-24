@@ -6,11 +6,17 @@
         <el-button type="primary" class="home_btn" round @click="$router.push('/user')">
           <i class="mdi mdi-home"></i> 返回首页
         </el-button>
-        <el-button type="danger" class="home_btn" round @click="$router.push('/user/backErrorWord')">
+        <el-button
+          type="danger"
+          class="home_btn"
+          round
+          @click="$router.push('/user/backErrorWord')"
+        >
           <i class="mdi mdi-close-circle-outline"></i> 默写措词
         </el-button>
       </div>
     </div>
+    <div class="warning e_card" style="margin-top: 20px;" v-if="wordList.length == 0">错词列表为空，快去学习新单词吧！</div>
     <div class="wordListr">
       <div class="wrapper" v-for="(item,index) in wordList" :key="item.id">
         <div class="inner">
@@ -38,34 +44,9 @@ export default {
     return {
       wordList: [
         {
-          id: "1",
-          word: "china1",
-          chinese: ["n.中国de ", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "2",
-          word: "china2",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "3",
-          word: "china3",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "4",
-          word: "china4",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "5",
-          word: "china5",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "6",
-          word: "china6",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
+          id: "",
+          word: "",
+          chinese: []
         }
       ]
     };
@@ -73,9 +54,9 @@ export default {
   methods: {
     getWordStatus() {
       this.axios
-        .get("/getWordStatus?status=1")
+        .get("/getWordStatus?status=3")
         .then(res => {
-          if (res.data.code == 3) {
+          if (res.data.code == 1) {
             this.wordList = res.data.data;
           }
         })
@@ -114,6 +95,9 @@ export default {
           });
         });
     }
+  },
+  mounted() {
+    this.getWordStatus();
   }
 };
 </script>
@@ -125,6 +109,7 @@ export default {
   align-items: center;
   .title {
     font-size: 1.5rem;
+    margin: 0;
   }
 }
 .wordListr {

@@ -1,11 +1,18 @@
 <template>
   <el-container id="app">
     <el-header class="header shadow_base">
-      <div class="left">四六级单词学习</div>
+      <div class="left" @click="$router.push('/check')" style="cursor: pointer;">四六级单词学习</div>
       <div class="right">
         <span class="mdi mdi-account-circle"></span>
         <span class="user_name">用户：{{name}}</span>
-        <el-button type="danger" size="small" icon="el-icon-circle-close-outline" style="margin-left: 20px;position: relative; bottom: 8px;" plain @click="logOut">注销</el-button>
+        <el-button
+          type="danger"
+          size="small"
+          icon="el-icon-circle-close-outline"
+          style="margin-left: 20px;position: relative; bottom: 8px;"
+          plain
+          @click="logOut"
+        >注销</el-button>
       </div>
     </el-header>
     <el-main>
@@ -20,10 +27,30 @@
 export default {
   data() {
     return {
-      name: "李大富"
+      name: ""
     };
   },
-  method:{
+  methods: {
+    logOut() {
+      localStorage.clear();
+      window.location.href = global.login_location;
+    },
+    getUserInfo() {
+      this.axios
+        .get("/getUserInfo")
+        .then(res => {
+          if (res.data.code == 1) {
+            this.name = res.data.data.name;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          this.$message.error("服务器无法连接");
+        });
+    }
+  },
+  mounted() {
+    this.getUserInfo();
   }
 };
 </script>
@@ -63,6 +90,8 @@ export default {
   overflow: inherit;
 }
 </style>
+
+
 
 
 

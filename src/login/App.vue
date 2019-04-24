@@ -18,7 +18,7 @@ export default {};
   align-items: center; /* 垂直居中 */
   #main {
     padding: 20px;
-    width: 100%;
+    width: 1200px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
@@ -35,6 +35,8 @@ html {
 body {
   height: 100%;
   background-color: #f4f5f5 !important;
+  padding: 0;
+  margin: 0;
 }
 hr{
   margin: 20px 0;

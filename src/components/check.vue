@@ -15,8 +15,8 @@ export default {
         .get("/getUserInfo")
         .then(res => {
           if (res.data.code == 1) {
-            let identiy = res.data.data.identiy;
-            if (identiy == "admin") {
+            let identity = res.data.data.identity;
+            if (identity == "admin") {
               this.$router.push("/admin");
             } else {
               this.$router.push("/user");
@@ -29,7 +29,7 @@ export default {
         });
     }
   },
-  mounted(){
+  mounted() {
     this.getUserInfo();
   }
 };

@@ -1,17 +1,20 @@
 <template>
   <div id="backErrorWord" class="e_card">
-    <div class="title">错词默写 | 中文释义：</div>
-    <hr>
-    <div class="chinese">
-      <div class="mean" v-for="(item,index) in wordList[index].chinese" :key="index">{{item}}</div>
+    <div class="warning" v-if="wordList.length == 0">暂时没有可供默写的单词了，快去学习新单词吧！</div>
+    <div class="wrapper" v-if="wordList.length != 0">
+      <div class="title">错词默写 | 中文释义：</div>
+      <hr>
+      <div class="chinese">
+        <div class="mean" v-for="(item,index) in wordList[index].chinese" :key="index">{{item}}</div>
+      </div>
+      <div class="back">
+        <el-input placeholder="请默写单词" prefix-icon="el-icon-edit" v-model="backWord"></el-input>
+        <el-button type="primary" @click="submit">提 交</el-button>
+      </div>
+      <el-button class="home_btn" round @click="$router.push('/user')">
+        <i class="mdi mdi-home"></i> 返回首页
+      </el-button>
     </div>
-    <div class="back">
-      <el-input placeholder="请默写单词" prefix-icon="el-icon-edit" v-model="backWord"></el-input>
-      <el-button type="primary" @click="submit">提 交</el-button>
-    </div>
-    <el-button class="home_btn" round @click="$router.push('/user')">
-      <i class="mdi mdi-home"></i> 返回首页
-    </el-button>
   </div>
 </template>
 
@@ -21,34 +24,9 @@ export default {
     return {
       wordList: [
         {
-          id: "1",
-          word: "china1",
-          chinese: ["n.中国de ", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "2",
-          word: "china2",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "3",
-          word: "china3",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "4",
-          word: "china4",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "5",
-          word: "china5",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
-        },
-        {
-          id: "6",
-          word: "china6",
-          chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"]
+          id: "",
+          word: "",
+          chinese: []
         }
       ],
       index: 0,

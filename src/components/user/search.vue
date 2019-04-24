@@ -1,13 +1,16 @@
 <template>
   <div id="search" class="e_card">
-    <div class="word">{{word.word}}</div>
-    <hr>
-    <div class="chinese">
-      <div class="mean" v-for="(item,index) in word.chinese" :key="index">{{item}}</div>
+    <div class="warning" v-if="word == undefined">暂时查不到相关单词，请检查单词是否拼写错误</div>
+    <div class="wrapper" v-if="word != undefined">
+      <div class="word">{{word.word}}</div>
+      <hr>
+      <div class="chinese">
+        <div class="mean" v-for="(item,index) in word.chinese" :key="index">{{item}}</div>
+      </div>
+      <el-button type="primary" class="home_btn" round @click="$router.push('/user')">
+        <i class="mdi mdi-home"></i> 返回首页
+      </el-button>
     </div>
-    <el-button type="primary" class="home_btn" round @click="$router.push('/user')">
-      <i class="mdi mdi-home"></i> 返回首页
-    </el-button>
   </div>
 </template>
 
@@ -16,10 +19,10 @@ export default {
   data() {
     return {
       word: {
-        id: "1",
-        word: "china",
-        chinese: ["n.中国", "adv.瓷器 陶瓷", "adj.瓷的"],
-        unit: "4"
+        id: "",
+        word: "",
+        chinese: [],
+        unit: ""
       }
     };
   },
@@ -29,7 +32,7 @@ export default {
         .get("/searchWord?key=" + this.$route.query.key)
         .then(res => {
           if (res.data.code == 1) {
-            this.word = res.data.data;
+            this.word = res.data.data[0];
           }
         })
         .catch(err => {
@@ -56,7 +59,7 @@ export default {
       line-height: 30px;
     }
   }
-  .home_btn{
+  .home_btn {
     position: absolute;
     top: 20px;
     right: 20px;

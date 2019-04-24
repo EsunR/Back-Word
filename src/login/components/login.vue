@@ -46,7 +46,7 @@ export default {
           // TODO: 接入登录
           this.axios
             .post("/login", this.loginForm)
-            .then(res => {
+              .then(res => {
               if (res.data.code == 1) {
                 this.$message("登录成功，正在跳转");
                 console.log(res.data);
@@ -60,7 +60,7 @@ export default {
                 }
                 // 保存token
                 localStorage.setItem("token", res.data.data.token);
-                setTimeout(function() {
+                setTimeout(() => {
                   window.location.href = this.COMMON.index_location;
                 }, 1000);
               } else {
