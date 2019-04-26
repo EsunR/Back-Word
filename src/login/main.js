@@ -5,8 +5,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import global from '../common.vue'
 import './plugins/element'
-import "bootstrap"
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 // 将引入的全局设置文件绑定到Vue的COMMON属性上
 Vue.prototype.COMMON = global
