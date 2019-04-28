@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from './components/home.vue'
-// import global from './common.vue'
+import global from './common.vue'
 import question from './components/question/question.vue'
 import ready from './components/question/ready.vue'
 import time from './components/question/time.vue'
 import hobbies from './components/question/hobbies.vue'
 import habit from './components/question/habit.vue'
+import success from './components/success.vue'
+import detail from './components/detail.vue'
 
 
 
@@ -47,6 +49,14 @@ var router = new Router({
           component: habit
         }
       ]
+    },
+    {
+      path: '/success',
+      component: success
+    },
+    {
+      path: '/detail/:id',
+      component: detail
     }
   ]
 })
@@ -57,7 +67,7 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     console.log("no token!");
-    // window.location.href = global.login_location
+    window.location.href = global.login_location
     next();
   }
 })

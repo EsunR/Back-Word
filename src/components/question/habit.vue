@@ -96,6 +96,7 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.$message.success('提交成功');
+            this.$router.push('/success');
           }
       })
       .catch(err => {

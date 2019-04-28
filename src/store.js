@@ -6,6 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     processing: false,
+    room: "",
+    name: "",
+    account: "",
+    uid: "",
     form: {
       getUpTime: "",
       sleepTime: "",
@@ -33,7 +37,12 @@ export default new Vuex.Store({
       }
     }
   },
-  actions: {
-
+  getters: {
+    getName: state => {
+      return state.name;
+    },
+    getRoom: state => {
+      return state.room;
+    }
   }
 })

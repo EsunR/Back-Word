@@ -18,6 +18,10 @@ Vue.use(VueAxios, axios);
 axios.defaults.baseURL = global.host;
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
+Vue.filter('pct', function (value) {
+  return value * 100 + '%'
+})
+
 
 new Vue({
   router,

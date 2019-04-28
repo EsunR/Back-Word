@@ -60,7 +60,7 @@ export default {
                 }
                 // 保存token
                 localStorage.setItem("token", res.data.data.token);
-                setTimeout(function() {
+                setTimeout(() => {
                   window.location.href = this.COMMON.index_location;
                 }, 1000);
               } else {

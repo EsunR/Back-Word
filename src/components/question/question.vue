@@ -24,20 +24,27 @@ export default {
   watch: {
     $route(to) {
       let link = to.fullPath.split("/").pop();
-      switch(link){
-        case 'ready':
+      switch (link) {
+        case "ready":
           this.active = 0;
           break;
-        case 'time': 
+        case "time":
           this.active = 1;
           break;
-        case 'hobbies':
+        case "hobbies":
           this.active = 2;
           break;
-        case 'habit': 
-          this.habit = 3;
+        case "habit":
+          this.active = 3;
           break;
       }
+    }
+  },
+  mounted() {
+    if (this.$store.getters.getRoom != "") {
+      this.$router.push("/");
+    } else {
+      this.$router.push("/question");
     }
   }
 };
