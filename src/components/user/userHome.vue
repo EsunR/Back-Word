@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="userHome">
     <div class="search_bar e_card">
       <div class="title">
         <i class="el-icon-document"></i> 查询单词 | Search Word
@@ -21,11 +21,19 @@
         </template>
         <template class="part_hide" v-slot:shade>默写单词 | Back Words</template>
       </mouse-hover>
+    </div>
+    <div class="select_part">
       <mouse-hover class="e_card part" @click="goTo('note')">
         <template v-slot:main>
           <i class="mdi-notebook mdi"></i>
         </template>
         <template v-slot:shade>错题本 | Note</template>
+      </mouse-hover>
+      <mouse-hover class="e_card part" @click="goTo('thesaurus')">
+        <template v-slot:main>
+          <i class="mdi-database mdi"></i>
+        </template>
+        <template v-slot:shade>单词库 | Thesaurus</template>
       </mouse-hover>
     </div>
   </div>
@@ -70,9 +78,9 @@ export default {
   margin: 0 -20px;
   margin-top: 30px;
   .part {
-    width: 33.3%;
+    width: 50% !important;
     margin: 0 20px;
-    height: 300px;
+    height: 200px !important;
   }
 }
 </style>

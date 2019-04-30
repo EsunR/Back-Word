@@ -11,6 +11,8 @@ import search from './components/user/search.vue'
 import backWord from './components/user/backWord.vue'
 import note from './components/user/note.vue'
 import backErrorWord from './components/user/backErrorWord.vue'
+import thesaurus from './components/user/thesaurus.vue'
+import userAddWord from './components/user/userAddWord.vue'
 
 import admin from './components/admin/admin.vue'
 import adminHome from './components/admin/adminHome.vue'
@@ -64,6 +66,14 @@ var router = new Router({
         {
           path: 'backErrorWord',
           component: backErrorWord
+        },
+        {
+          path: 'thesaurus',
+          component: thesaurus
+        },
+        {
+          path: 'userAddWord',
+          component: userAddWord
         }
       ]
     },
@@ -98,7 +108,6 @@ router.beforeEach((to, from, next) => {
     // console.log("get success");
     next();
   } else {
-    console.log("no token!");
     window.location.href = global.login_location
     next();
   }

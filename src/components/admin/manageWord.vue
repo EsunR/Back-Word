@@ -65,12 +65,11 @@
         <div class="btn_box">
           <el-button type="danger" @click="reset">重置数据</el-button>
           <el-button type="primary" @click="addChinese">添加释义</el-button>
-          <el-button type="success" @click="submit">提交单词</el-button>
+          <el-button type="success" @click="submit">提交修改</el-button>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -156,8 +155,8 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.$message.success("修改成功");
-            this.wordList[this.index] = this.form;
-            this.reset();
+            this.wordList.splice(this.index, 1, this.form);
+            // this.reset();
             this.dialogVisible = false;
           }
         })
@@ -179,6 +178,10 @@ export default {
       })();
     },
     searchWord() {
+      if (this.key == "") {
+        this.getWordList();
+        return;
+      }
       this.axios
         .get("/searchWord?key=" + this.key)
         .then(res => {

@@ -73,7 +73,7 @@ export default {
             .post("/register", obj)
             .then(res => {
               if (res.data.code == 1) {
-                this.$message("注册成功，请登录");
+                this.$message("注册成功，请耐心等待审核。");
                 this.$router.push("/login");
               } else {
                 this.$message("该用户名已被占用，注册失败");

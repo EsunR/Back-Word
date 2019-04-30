@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="adminHome">
     <div class="title e_card">管理员选项 | Administrator Options</div>
     <div class="select_part">
       <mouse-hover class="e_card part" @click="goTo('addWord')">

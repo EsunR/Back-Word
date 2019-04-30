@@ -77,6 +77,10 @@ export default {
           if (res.data.code == 1) {
             this.$message.success("标记成功！");
             this.index++;
+            if(this.index == this.wordList.length){
+              this.$router.push('/user');
+              this.$message('您已经学完了所有的单词，休息一下吧！');
+            }
           }
         })
         .catch(err => {
@@ -99,6 +103,7 @@ export default {
     font-weight: bold;
   }
   .chinese {
+    min-height: 80px;
     .mean {
       line-height: 30px;
     }

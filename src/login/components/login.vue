@@ -63,12 +63,14 @@ export default {
                 setTimeout(() => {
                   window.location.href = this.COMMON.index_location;
                 }, 1000);
-              } else {
-                this.$message("账号或密码错误");
+              } else if(res.data.code == 3) {
+                this.$message.error("账号正在审核");
+              } else{
+                this.$message.error('账号或密码错误');
               }
             })
             .catch(() => {
-              this.$message("账号不存在");
+              this.$message("服务器连接失败");
             });
         } else {
           return false;
