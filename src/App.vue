@@ -8,7 +8,7 @@
       >宿舍分配系统 | Dormitory Allocation System</div>
       <div class="right">
         <span class="mdi mdi-account-circle"></span>
-        <span class="user_name">用户：{{name}}</span>
+        <span class="user_name">用户：{{$store.state.name}}</span>
         <el-button
           style="margin-left: 10px; position: relative; bottom: 10px;"
           type="danger"
@@ -49,11 +49,6 @@ export default {
   },
   mounted() {
     this.getUserInfo();
-  },
-  computed: {
-    name(){
-      return this.$store.state.name
-    }
   }
 };
 </script>

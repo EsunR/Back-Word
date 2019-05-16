@@ -16,6 +16,7 @@
         <el-input type="password" v-model="loginForm.password"></el-input>
       </el-form-item>
       <el-checkbox v-model="rememberPwd" class="rememberPwd">记住密码</el-checkbox>
+      <el-checkbox v-model="adminLogin">管理员登录</el-checkbox>
       <el-form-item class="btn_box">
         <el-button type="primary" @click="loginClick">登 录</el-button>
         <el-button type="success" @click="$router.push('/register')">注 册</el-button>
@@ -36,20 +37,26 @@ export default {
         account: [{ required: true, message: "请输入账号", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       },
-      rememberPwd: true
+      rememberPwd: true,
+      adminLogin: false
     };
   },
   methods: {
     loginClick() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          let data = this.loginForm;
+          if(this.adminLogin){
+            data.identity = 'admin'
+          }else{
+            data.identity = 'user'
+          }
           // TODO: 接入登录
           this.axios
-            .post("/login", this.loginForm)
+            .post("/login", data)
             .then(res => {
               if (res.data.code == 1) {
                 this.$message("登录成功，正在跳转");
-                console.log(res.data);
                 // 记住用户名、密码
                 if (this.rememberPwd) {
                   this.setCookie("account", this.loginForm.account);

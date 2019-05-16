@@ -9,6 +9,8 @@ import hobbies from './components/question/hobbies.vue'
 import habit from './components/question/habit.vue'
 import success from './components/success.vue'
 import detail from './components/detail.vue'
+import manageStudent from './components/manageStudent.vue'
+import manageRoom from './components/manageRoom.vue'
 
 
 
@@ -57,6 +59,14 @@ var router = new Router({
     {
       path: '/detail/:id',
       component: detail
+    },
+    {
+      path: '/manageStudent',
+      component: manageStudent
+    },
+    {
+      path: '/manageRoom',
+      component: manageRoom
     }
   ]
 })

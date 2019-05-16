@@ -9,6 +9,7 @@ export default new Vuex.Store({
     room: "",
     name: "",
     account: "",
+    identity: "",
     uid: "",
     form: {
       getUpTime: "",
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     },
     getRoom: state => {
       return state.room;
+    },
+    getIdentity: state => {
+      return state.identity;
     }
   }
 })

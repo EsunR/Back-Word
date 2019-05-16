@@ -37,70 +37,8 @@ export default {
   data() {
     return {
       roomId: this.$route.params.id,
-      memberList: [
-        {
-          uid: "1",
-          name: "李大帅",
-          getUpTime: "09:00",
-          sleepTime: "22:00",
-          game: ["网络游戏", "单机游戏"],
-          read: ["不喜欢"],
-          video: ["电影", "动漫"],
-          sport: ["不喜欢"],
-          music: ["欧美音乐"],
-          religion: 0,
-          quite: 0,
-          noise: 0,
-          sound: 0,
-          stay: 0
-        },
-        {
-          uid: "2",
-          name: "李大帅",
-          getUpTime: "09:00",
-          sleepTime: "22:00",
-          game: ["网络游戏", "单机游戏"],
-          read: ["不喜欢"],
-          video: ["电影", "动漫"],
-          sport: ["不喜欢"],
-          music: ["欧美音乐"],
-          religion: 0,
-          quite: 0,
-          noise: 0,
-          sound: 1,
-          stay: 1
-        },
-        {
-          uid: "3",
-          name: "李大帅",
-          getUpTime: "09:00",
-          sleepTime: "22:00",
-          game: ["网络游戏", "单机游戏"],
-          read: ["不喜欢"],
-          video: ["电影", "动漫"],
-          sport: ["不喜欢"],
-          music: ["欧美音乐"],
-          religion: 0,
-          quite: 0,
-          noise: 0,
-          sound: 0,
-          stay: 0
-        }
-      ],
-      feedBackList: [
-        {
-          id: 1,
-          name: "李大帅",
-          comment: "宿舍很不错",
-          harmonious: 5
-        },
-        {
-          id: 2,
-          name: "李大帅",
-          comment: "宿舍很不错",
-          harmonious: 4
-        }
-      ]
+      memberList: [],
+      feedBackList: []
     };
   },
   methods: {

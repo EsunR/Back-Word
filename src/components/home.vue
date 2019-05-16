@@ -4,15 +4,23 @@
       <div class="top e_card">
         <img src="../assets/index.jpg">
         <div class="title">
-          <div class="welcome_title">Welcome，欢迎使用宿舍分配系统</div>
+          <div class="welcome_title">
+            Welcome，欢迎使用宿舍分配系统
+            <span style="background: #409EFF; padding: 10px 5px; color: #fff; font-weight: 100; border-radius: 5px; font-size: 16px; position: relative; top: -3px;" v-if="identity == 'admin'">后台管理</span>
+          </div>
           <hr>
-          <div class="subtitle">
-            <p>检测到您是第一次使用该系统，系统将引导您完成宿舍分配工作。</p>
-            <p style="margin-bottom: 0px;">点击右下方按钮即可开始进入分配流程。</p>
+          <div class="subtitle" v-if="identity != 'admin'">
+            <p v-if="$store.getters.getRoom == ''">检测到您是第一次使用该系统，系统将引导您完成宿舍分配工作。</p>
+            <p v-if="$store.getters.getRoom == ''" style="margin-bottom: 0px;">点击右下方按钮即可开始进入分配流程。</p>
+            <p v-if="$store.getters.getRoom != ''">您已经完成了宿舍分配。</p>
+          </div>
+          <div class="admin_panel" v-if="identity == 'admin'">
+            <div class="left chuck" @click="goto('manageStudent')">学生管理</div>
+            <div class="right chuck" @click="goto('manageRoom')">宿舍管理</div>
           </div>
         </div>
         <el-button
-          v-if="$store.state.room == ''"
+          v-if="$store.state.room == '' && identity != 'admin'"
           class="start"
           type="success"
           icon="el-icon-check"
@@ -20,7 +28,7 @@
           @click="$router.push('/question')"
         ></el-button>
         <el-button
-          v-if="$store.getters.getRoom != ''"
+          v-if="$store.getters.getRoom != '' && identity != 'admin'"
           class="start"
           type="success"
           icon="el-icon-check"
@@ -94,11 +102,17 @@ export default {
             message: "操作已取消"
           });
         });
+    },
+    goto(path) {
+      this.$router.push(`./${path}`);
     }
   },
   computed: {
     room() {
       return this.$store.state.room;
+    },
+    identity() {
+      return this.$store.state.identity;
     }
   },
   watch: {
@@ -132,6 +146,27 @@ export default {
     right: 20px;
     font-size: 20px;
     bottom: -20px;
+  }
+  .admin_panel {
+    display: flex;
+    margin: -10px;
+    .chuck {
+      width: 50%;
+      height: 100px;
+      color: #fff;
+      margin: 10px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 100px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .left {
+      background-color: #409eff;
+    }
+    .right {
+      background-color: #409eff;
+    }
   }
 }
 .bottom {
