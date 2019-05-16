@@ -107,6 +107,7 @@ export default {
     editClick(index) {
       this.dialogVisible = true;
       this.form = JSON.parse(JSON.stringify(this.userList[index]));
+      this.form.identity = "user";
       this.index = index;
     },
     submit() {

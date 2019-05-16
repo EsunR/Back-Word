@@ -1,12 +1,16 @@
 <template>
   <div id="home">
+    <div>{{$store.state.identity}}</div>
     <transition>
       <div class="top e_card">
         <img src="../assets/index.jpg">
         <div class="title">
           <div class="welcome_title">
             Welcome，欢迎使用宿舍分配系统
-            <span style="background: #409EFF; padding: 10px 5px; color: #fff; font-weight: 100; border-radius: 5px; font-size: 16px; position: relative; top: -3px;" v-if="identity == 'admin'">后台管理</span>
+            <span
+              style="background: #409EFF; padding: 10px 5px; color: #fff; font-weight: 100; border-radius: 5px; font-size: 16px; position: relative; top: -3px;"
+              v-if="identity == 'admin'"
+            >后台管理</span>
           </div>
           <hr>
           <div class="subtitle" v-if="identity != 'admin'">
@@ -63,7 +67,7 @@ export default {
       form: {
         roomId: "",
         harmonious: 5,
-        comment: ""
+        comment: this.$store.state.roomId
       }
     };
   },
@@ -83,6 +87,7 @@ export default {
           for (let key in this.form) {
             obj[key] = this.form[key].toString();
           }
+          obj.roomId = this.room;
           this.axios
             .post("/postComment", obj)
             .then(res => {
